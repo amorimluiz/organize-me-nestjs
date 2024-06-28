@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function bootstrap(): Promise<any> {
+    const app = await NestFactory.create(AppModule);
+    await app.listen(3000);
 }
 bootstrap();

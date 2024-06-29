@@ -51,7 +51,7 @@ OrganizeMe is a task management application designed to help you organize your d
 
 ### Development
 
-To run the application in development mode with live reloading:
+The application runs in development mode inside the docker container:
 
 ```sh
 docker-compose up --build
@@ -59,17 +59,17 @@ docker-compose up --build
 
 ### Production
 
-To run the application in production mode with Docker Compose (ensure `ENV` in `.env` is not set to `development`):
+To run the application in production mode:
 
 ```sh
-docker-compose up --build
+npm run start:prod
 ```
+
 ## Configuration
 
 The application can be configured using environment variables. Update your `.env` file accordingly:
 
 ```env
-ENV="development"
 API_PORT=3000
 DB_HOST="your-db-host"
 DB_PORT=3306

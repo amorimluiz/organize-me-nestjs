@@ -35,6 +35,7 @@ module.exports = {
         '@typescript-eslint/explicit-member-accessibility': 'error',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         '@stylistic/js/comma-dangle': ['error', 'always-multiline'],
         '@stylistic/js/indent': ['error', 4],
         '@stylistic/js/linebreak-style': ['error', 'unix'],
@@ -42,5 +43,5 @@ module.exports = {
         '@stylistic/js/semi': ['error', 'always', { omitLastInOneLineBlock: true }],
         'prettier/prettier': 0,
     },
-    ignorePatterns: ['.eslintrc.js', 'dist/', 'node_modules/', 'coverage/', 'jest.config.js', 'src/db/*.ts'],
+    ignorePatterns: ['.eslintrc.js', 'dist/', 'node_modules/', 'coverage/', 'jest.config.js'],
 };

@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 
-import { DataSource } from "typeorm";
-import { SnakeCaseStrategy } from "./snakecase";
-import { env } from "process";
-import { join } from "path";
+import { DataSource } from 'typeorm';
+import { SnakeCaseStrategy } from './snakecase';
+import { env } from 'process';
+import { join } from 'path';
 
 export type MysqlDbType = 'mysql' | 'mariadb'
 

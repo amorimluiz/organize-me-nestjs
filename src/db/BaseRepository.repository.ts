@@ -13,7 +13,6 @@ interface IBaseRepository<T extends IBaseEntity> {
     findAll(): Promise<T[]>;
     updateById(id: string, data: QueryDeepPartialEntity<T>): Promise<T | null>;
     deleteById(id: string): Promise<void>;
-    softDeleteById(id: string): Promise<void>;
 }
 
 export abstract class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T> {
@@ -46,9 +45,5 @@ export abstract class BaseRepository<T extends IBaseEntity> implements IBaseRepo
 
     public async deleteById(id: string): Promise<void> {
         await this.repository.delete(id);
-    }
-
-    public async softDeleteById(id: string): Promise<void> {
-        await this.repository.softDelete(id);
     }
 }

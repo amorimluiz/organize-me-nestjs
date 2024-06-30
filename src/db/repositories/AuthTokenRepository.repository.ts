@@ -8,7 +8,7 @@ import { User } from '../entities/User.entity';
 interface IAuthTokenRepository {
     findActivesByUserId(user: User): Promise<AuthToken[]>;
     findByToken(token: string): Promise<AuthToken | null>;
-    revokeToken(token: AuthToken): Promise<AuthToken | null>;
+    revokeToken(token: AuthToken): Promise<AuthToken>;
 }
 
 @Injectable()
@@ -28,7 +28,7 @@ export class AuthTokenRepository extends BaseRepository<AuthToken> implements IA
         return this.repository.findOneBy({ token });
     }
 
-    public async revokeToken(token: AuthToken): Promise<AuthToken | null> {
+    public async revokeToken(token: AuthToken): Promise<AuthToken> {
         token.isRevoked = true;
         return this.save(token);
     }

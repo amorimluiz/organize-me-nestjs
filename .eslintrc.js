@@ -42,5 +42,5 @@ module.exports = {
         '@stylistic/js/semi': ['error', 'always', { omitLastInOneLineBlock: true }],
         'prettier/prettier': 0,
     },
-    ignorePatterns: ['.eslintrc.js', 'dist/', 'node_modules/', 'coverage/', 'jest.config.js'],
+    ignorePatterns: ['.eslintrc.js', 'dist/', 'node_modules/', 'coverage/', 'jest.config.js', 'src/db/*.ts'],
 };

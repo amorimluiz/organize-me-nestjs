@@ -51,10 +51,10 @@ OrganizeMe is a task management application designed to help you organize your d
 
 ### Development
 
-The application runs in development mode inside the docker container:
+To run the application in development mode:
 
 ```sh
-docker-compose up --build
+npm run start:dev
 ```
 
 ### Production
@@ -70,14 +70,17 @@ npm run start:prod
 The application can be configured using environment variables. Update your `.env` file accordingly:
 
 ```env
-API_PORT=3000
-DB_HOST="your-db-host"
-DB_PORT=3306
-DB_USER="your-db-user"
-DB_PASSWORD="your-db-password"
-DB_NAME="your-db-name"
-ADMINER_PORT=8081
-JWT_SECRET="your-jwt-secret"
+JWT_SECRET=""
+
+DB_HOST=""
+DB_USER=""
+DB_PASSWORD=""
+DB_NAME=""
+DB_TYPE=""
+
+API_PORT=""
+DB_PORT=""
+ADMINER_PORT=""
 ```
 
 ## License

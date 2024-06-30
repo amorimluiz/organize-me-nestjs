@@ -16,8 +16,8 @@ const dataSource = new DataSource({
     username: env.DB_USER,
     password: env.DB_PASSWORD,
     database: env.DB_NAME,
-    entities: [join(__dirname, 'entities', '**', '*.{ts,js}')],
-    migrations: [join(__dirname, 'migrations', '**', '*.{ts,js}')],
+    entities: [join(__dirname, 'entities', '**', '*.js')],
+    migrations: [join(__dirname, 'migrations', '**', '*.js')],
     namingStrategy: new SnakeCaseStrategy(),
 });
 

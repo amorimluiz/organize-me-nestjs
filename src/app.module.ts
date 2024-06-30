@@ -6,6 +6,8 @@ import { SnakeCaseStrategy } from './db/snakecase';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './db/entities/User.entity';
 import { env } from 'process';
+import { AuthController } from './auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -20,8 +22,9 @@ import { env } from 'process';
             entities: [User, AuthToken],
             namingStrategy: new SnakeCaseStrategy(),
         }),
+        AuthModule,
     ],
-    controllers: [],
+    controllers: [AuthController],
     providers: [],
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
+import { AuthToken } from './db/entities/AuthToken.entity';
 import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { MysqlDbType } from './db/datasource';
 import { SnakeCaseStrategy } from './db/snakecase';
-import { Token } from './db/entities/Token.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './db/entities/User.entity';
 import { env } from 'process';
@@ -17,7 +17,7 @@ import { env } from 'process';
             username: env.DB_USER,
             password: env.DB_PASSWORD,
             database: env.DB_NAME,
-            entities: [User, Token],
+            entities: [User, AuthToken],
             namingStrategy: new SnakeCaseStrategy(),
         }),
     ],

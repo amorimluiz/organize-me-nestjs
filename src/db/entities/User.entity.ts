@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-import { Token } from './Token.entity';
+import { AuthToken } from './AuthToken.entity';
 
 @Entity('users')
 export class User {
@@ -28,6 +28,6 @@ export class User {
     @DeleteDateColumn()
     public deletedAt: Date;
 
-    @OneToMany(() => Token, (token) => token.user)
-    public tokens: Token[];
+    @OneToMany(() => AuthToken, (token) => token.user)
+    public tokens: AuthToken[];
 }

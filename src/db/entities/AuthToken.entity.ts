@@ -2,8 +2,8 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Up
 
 import { User } from './User.entity';
 
-@Entity('tokens')
-export class Token {
+@Entity('auth_tokens')
+export class AuthToken {
     @PrimaryGeneratedColumn('uuid')
     public id: string;
 

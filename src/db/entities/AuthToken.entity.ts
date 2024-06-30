@@ -16,8 +16,8 @@ export class AuthToken {
     @Column({ type: 'datetime' })
     public expiresAt: Date;
 
-    @ManyToOne(() => User, (user) => user.tokens)
-    public user: string;
+    @ManyToOne(() => User, (user) => user.tokens, { nullable: false })
+    public user: User;
 
     @CreateDateColumn()
     public createdAt: Date;

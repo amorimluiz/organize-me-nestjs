@@ -7,6 +7,7 @@ OrganizeMe is a task management application designed to help you organize your d
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Database_Diagram](#database-diagram)
 - [Configuration](#configuration)
 - [License](#license)
 

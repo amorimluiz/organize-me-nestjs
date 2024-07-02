@@ -3,8 +3,8 @@ export type UserType = {
     fullName: string;
     password: string;
     profilePhoto?: string;
-}
+};
 
 export type AuthTokenResponse = {
     accessToken: string;
-}
+};

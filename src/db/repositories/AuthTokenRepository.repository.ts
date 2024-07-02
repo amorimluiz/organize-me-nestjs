@@ -12,16 +12,22 @@ interface IAuthTokenRepository {
 }
 
 @Injectable()
-export class AuthTokenRepository extends BaseRepository<AuthToken> implements IAuthTokenRepository {
+export class AuthTokenRepository
+    extends BaseRepository<AuthToken>
+    implements IAuthTokenRepository
+{
     public constructor(
         @InjectRepository(AuthToken)
-        protected readonly repository: Repository<AuthToken>
+        protected readonly repository: Repository<AuthToken>,
     ) {
         super(repository);
     }
 
     public async findActivesByUserId(user: User): Promise<AuthToken[]> {
-        return this.repository.findBy({ user: { id: user.id }, isRevoked: false });
+        return this.repository.findBy({
+            user: { id: user.id },
+            isRevoked: false,
+        });
     }
 
     public async findByToken(token: string): Promise<AuthToken | null> {

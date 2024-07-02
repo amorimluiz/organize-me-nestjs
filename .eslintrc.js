@@ -7,7 +7,6 @@ module.exports = {
     },
     plugins: [
         '@typescript-eslint/eslint-plugin',
-        '@stylistic/js',
     ],
     extends: [
         'plugin:@typescript-eslint/recommended',
@@ -21,7 +20,7 @@ module.exports = {
     rules: {
         'array-callback-return': 'error',
         'default-case': 'error',
-        'default-case-last': 'warn',
+        'default-case-last': 'error',
         'dot-notation': 'warn',
         'eqeqeq': 'error',
         'no-console': 'warn',
@@ -35,13 +34,16 @@ module.exports = {
         '@typescript-eslint/explicit-member-accessibility': 'error',
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
-        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-        '@stylistic/js/comma-dangle': ['error', 'always-multiline'],
-        '@stylistic/js/indent': ['error', 4],
-        '@stylistic/js/linebreak-style': ['error', 'unix'],
-        '@stylistic/js/quotes': ['error', 'single', { avoidEscape: true }],
-        '@stylistic/js/semi': ['error', 'always', { omitLastInOneLineBlock: true }],
-        'prettier/prettier': 0,
+        '@typescript-eslint/no-unused-vars': ['error', {
+            "args": "all",
+            "argsIgnorePattern": "^_",
+            "caughtErrors": "all",
+            "caughtErrorsIgnorePattern": "^_",
+            "destructuredArrayIgnorePattern": "^_",
+            "varsIgnorePattern": "^_",
+            "ignoreRestSiblings": true
+        }],
+        'prettier/prettier': 'error',
     },
     ignorePatterns: ['.eslintrc.js', 'dist/', 'node_modules/', 'coverage/', 'jest.config.js'],
 };

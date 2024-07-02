@@ -15,7 +15,6 @@ describe('auth service suite', () => {
     let authTokenRepository: jest.Mocked<AuthTokenRepository>;
     let jwtService: jest.Mocked<JwtService>;
 
-
     beforeAll(async () => {
         const { unit, unitRef } = TestBed.create(AuthService).compile();
 
@@ -28,13 +27,18 @@ describe('auth service suite', () => {
         userRepository.save.mockImplementation((user) => Promise.resolve(user));
 
         authTokenRepository.create.mockReturnValue({} as AuthToken);
-        authTokenRepository.save.mockImplementation((authToken) => Promise.resolve(authToken));
-        authTokenRepository.findActivesByUserId.mockResolvedValue([{ isRevoked: false }] as AuthToken[]);
-        authTokenRepository.revokeToken.mockResolvedValue({ isRevoked: true } as AuthToken);
+        authTokenRepository.save.mockImplementation((authToken) =>
+            Promise.resolve(authToken),
+        );
+        authTokenRepository.findActivesByUserId.mockResolvedValue([
+            { isRevoked: false },
+        ] as AuthToken[]);
+        authTokenRepository.revokeToken.mockResolvedValue({
+            isRevoked: true,
+        } as AuthToken);
 
         jwtService.sign.mockReturnValue('token');
         jwtService.verify.mockReturnValue({ exp: Date.now() / 1000 });
-
     });
 
     const email = 'johndoe@test.com.br';
@@ -70,7 +74,9 @@ describe('auth service suite', () => {
         userRepository.existsByEmail.mockResolvedValue(true);
 
         // Act && Assert
-        await expect(authService.register(data)).rejects.toThrow(`Usuário ${data.email} já cadastrado.`);
+        await expect(authService.register(data)).rejects.toThrow(
+            `Usuário ${data.email} já cadastrado.`,
+        );
         expect(userRepository.existsByEmail).toHaveBeenCalledWith(email);
     });
 
@@ -88,7 +94,9 @@ describe('auth service suite', () => {
         expect(userRepository.findByEmail).toHaveBeenCalledWith(email);
         expect(jwtService.sign).toHaveBeenCalled();
         expect(jwtService.verify).toHaveBeenCalled();
-        expect(authTokenRepository.findActivesByUserId).toHaveBeenCalledWith(user);
+        expect(authTokenRepository.findActivesByUserId).toHaveBeenCalledWith(
+            user,
+        );
         expect(authTokenRepository.revokeToken).toHaveBeenCalled();
         expect(authTokenRepository.save).toHaveBeenCalled();
         expect(result).toEqual({ accessToken: 'token' });
@@ -101,7 +109,9 @@ describe('auth service suite', () => {
         userRepository.findByEmail.mockResolvedValue(null);
 
         // Act && Assert
-        await expect(authService.login(data)).rejects.toThrow('Usuário ou senha inválidos.');
+        await expect(authService.login(data)).rejects.toThrow(
+            'Usuário ou senha inválidos.',
+        );
         expect(userRepository.findByEmail).toHaveBeenCalledWith(email);
     });
 
@@ -114,8 +124,13 @@ describe('auth service suite', () => {
         (bcrypt.compareSync as jest.Mock).mockReturnValue(false);
 
         // Act && Assert
-        await expect(authService.login(data)).rejects.toThrow('Usuário ou senha inválidos.');
+        await expect(authService.login(data)).rejects.toThrow(
+            'Usuário ou senha inválidos.',
+        );
         expect(userRepository.findByEmail).toHaveBeenCalledWith(email);
-        expect(bcrypt.compareSync).toHaveBeenCalledWith(data.password, user.password);
+        expect(bcrypt.compareSync).toHaveBeenCalledWith(
+            data.password,
+            user.password,
+        );
     });
 });

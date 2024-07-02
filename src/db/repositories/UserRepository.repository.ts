@@ -10,10 +10,13 @@ interface IUserRepository {
 }
 
 @Injectable()
-export class UserRepository extends BaseRepository<User> implements IUserRepository {
+export class UserRepository
+    extends BaseRepository<User>
+    implements IUserRepository
+{
     public constructor(
         @InjectRepository(User)
-        protected readonly repository: Repository<User>
+        protected readonly repository: Repository<User>,
     ) {
         super(repository);
     }

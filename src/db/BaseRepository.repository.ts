@@ -15,7 +15,8 @@ interface IBaseRepository<T extends IBaseEntity> {
     deleteById(id: string): Promise<void>;
 }
 
-export abstract class BaseRepository<T extends IBaseEntity> implements IBaseRepository<T> {
+export abstract class BaseRepository<T extends IBaseEntity>
+    implements IBaseRepository<T> {
     protected constructor(protected readonly repository: Repository<T>) { }
 
     public create(): T {
@@ -38,7 +39,10 @@ export abstract class BaseRepository<T extends IBaseEntity> implements IBaseRepo
         return this.repository.find();
     }
 
-    public async updateById(id: string, data: QueryDeepPartialEntity<T>): Promise<T | null> {
+    public async updateById(
+        id: string,
+        data: QueryDeepPartialEntity<T>,
+    ): Promise<T | null> {
         await this.repository.update(id, data);
         return this.findById(id);
     }

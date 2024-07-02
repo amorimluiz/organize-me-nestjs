@@ -20,4 +20,4 @@ import { env } from 'process';
         }),
     ],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -2,7 +2,6 @@ import { IsEmail, IsString, IsStrongPassword } from 'class-validator';
 import passwordConfig from '../password-config';
 
 export class RegisterDto {
-
     @IsEmail()
     public email: string;
 

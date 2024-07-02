@@ -14,13 +14,16 @@ export class AuthService {
         private readonly userRepository: UserRepository,
         private readonly authTokenRepository: AuthTokenRepository,
         private readonly jwtService: JwtService,
-    ) { }
+    ) {}
 
     private parseRequestBodyToUser(user: User, data: Partial<UserType>): User {
         user.email = data.email;
 
         if (data.password) {
-            user.password = bcrypt.hashSync(data.password, bcrypt.genSaltSync());
+            user.password = bcrypt.hashSync(
+                data.password,
+                bcrypt.genSaltSync(),
+            );
         }
 
         user.fullName = data.fullName;
@@ -46,7 +49,9 @@ export class AuthService {
 
         authToken.token = this.signToken(user);
         authToken.isRevoked = false;
-        authToken.expiresAt = new Date(this.jwtService.verify(authToken.token).exp * 1000);
+        authToken.expiresAt = new Date(
+            this.jwtService.verify(authToken.token).exp * 1000,
+        );
         authToken.user = user;
 
         return authToken;
@@ -54,15 +59,18 @@ export class AuthService {
 
     public async register(data: UserType): Promise<AuthTokenResponse> {
         if (await this.userRepository.existsByEmail(data.email)) {
-            throw new BadRequestException(`Usuário ${data.email} já cadastrado.`);
+            throw new BadRequestException(
+                `Usuário ${data.email} já cadastrado.`,
+            );
         }
 
-        const user = await this.userRepository.save(this.parseRequestBodyToUser(
-            this.userRepository.create(),
-            data
-        ));
+        const user = await this.userRepository.save(
+            this.parseRequestBodyToUser(this.userRepository.create(), data),
+        );
 
-        const authToken = await this.authTokenRepository.save(this.generateAuthToken(user));
+        const authToken = await this.authTokenRepository.save(
+            this.generateAuthToken(user),
+        );
 
         return { accessToken: authToken.token };
     }
@@ -74,13 +82,16 @@ export class AuthService {
             throw new BadRequestException('Usuário ou senha inválidos.');
         }
 
-        const authTokens = await this.authTokenRepository.findActivesByUserId(user);
+        const authTokens =
+            await this.authTokenRepository.findActivesByUserId(user);
 
         authTokens.forEach(async (authToken) => {
             await this.authTokenRepository.revokeToken(authToken);
         });
 
-        const authToken = await this.authTokenRepository.save(this.generateAuthToken(user));
+        const authToken = await this.authTokenRepository.save(
+            this.generateAuthToken(user),
+        );
 
         return { accessToken: authToken.token };
     }

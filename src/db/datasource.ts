@@ -5,7 +5,7 @@ import { SnakeCaseStrategy } from './snakecase';
 import { env } from 'process';
 import { join } from 'path';
 
-export type MysqlDbType = 'mysql' | 'mariadb'
+export type MysqlDbType = 'mysql' | 'mariadb';
 
 dotenv.config();
 

@@ -43,5 +43,4 @@ describe('auth controller suite', () => {
         expect(authService.login).toHaveBeenCalledWith(data);
         expect(result).toEqual({ accessToken: 'token' });
     });
-
 });

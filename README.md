@@ -65,6 +65,12 @@ To run the application in production mode:
 npm run start:prod
 ```
 
+## Database Diagram
+
+Below is the database diagram for OrganizeMe, detailing the structure and relationships between the users and tokens tables:
+
+![Alt text](./assets/db_diagram.jpeg "Database Diagram")
+
 ## Configuration
 
 The application can be configured using environment variables. Update your `.env` file accordingly:

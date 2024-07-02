@@ -16,8 +16,9 @@ interface IBaseRepository<T extends IBaseEntity> {
 }
 
 export abstract class BaseRepository<T extends IBaseEntity>
-    implements IBaseRepository<T> {
-    protected constructor(protected readonly repository: Repository<T>) { }
+    implements IBaseRepository<T>
+{
+    protected constructor(protected readonly repository: Repository<T>) {}
 
     public create(): T {
         return this.repository.create();

@@ -7,6 +7,7 @@ OrganizeMe is a task management application designed to help you organize your d
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Database_Diagram](#database-diagram)
 - [Configuration](#configuration)
 - [License](#license)
 
@@ -64,6 +65,12 @@ To run the application in production mode:
 ```sh
 npm run start:prod
 ```
+
+## Database Diagram
+
+Below is the database diagram for OrganizeMe, detailing the structure and relationships between the users and tokens tables:
+
+![Alt text](./assets/db_diagram.jpeg "Database Diagram")
 
 ## Configuration
 
